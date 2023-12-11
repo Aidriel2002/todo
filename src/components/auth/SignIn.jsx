@@ -70,6 +70,7 @@ const SignIn = () => {
     
     <div className="big-box">
             <div className="left-box">
+              <div className="trt">
               <div className="image-box">
                 <img
                   className="logo"
@@ -81,6 +82,7 @@ const SignIn = () => {
               <h2 className="logo-caption">
                 Organize your daily task, say goodbye to missed deadlines.
               </h2>
+              </div>
             </div>
             
             

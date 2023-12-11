@@ -47,11 +47,15 @@ body {
     height: 456px;
     width: 396px;
   }
-  
-  @media only screen and (max-width: 1125px) {
-    .right-box {
-      float: right;
+
+  @media only screen and (max-width: 800px) {
+    .trt {
+      display: none;
     }
+    .big-box {
+      width: 100%;
+    }
+
   }
   .email-box {
     border-radius: 6px;
@@ -204,3 +208,6 @@ body {
     margin-top: 5px;
     margin-bottom: 10px;
   }
+
+
+
