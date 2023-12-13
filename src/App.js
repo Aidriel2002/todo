@@ -14,7 +14,7 @@ function App() {
             <div>
                 <Routes>
                     <Route path="/" element={<HomePage/>} />
-                    <Route path="/s" element={<Dashboard/>} />
+                    <Route path="/dashboard" element={<Dashboard/>} />
                     <Route path="/home" element={<AuthDetails/>} />
                     <Route path="/reset" element={<ForgotPassword/>} />
                 </Routes>

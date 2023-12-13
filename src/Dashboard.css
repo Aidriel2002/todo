@@ -1,0 +1,27 @@
+.d-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; 
+  }
+  
+  .d-center {
+    text-align: center;
+  }
+  
+.greet {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.greet span {
+    color: #521A7A;
+}
+
+.question {
+    font-size: 1.7rem;
+}
+  
+.task-item.recycled {
+  display: none;
+}

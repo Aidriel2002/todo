@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import React, { useState } from "react";
-import { database } from "./firebase";
+import { auth } from "./firebase";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from "react-router-dom";
@@ -49,7 +49,7 @@ const SignIn = () => {
       return;
     }  
  
-    signInWithEmailAndPassword(database, userEmail, password)
+    signInWithEmailAndPassword(auth, userEmail, password)
       .then((userCredential) => {
         console.log(userCredential);
         history('/home');
@@ -84,8 +84,6 @@ const SignIn = () => {
               </h2>
               </div>
             </div>
-            
-            
     <div className="right-box">
     
 

@@ -1,10 +1,11 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import React, { useState } from "react";
-import { database } from "./firebase";
+import { auth } from "./firebase";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import './SignUp.css';
+
 
 const SignUp = () => {
   const [message, setMessage] = useState("");
@@ -23,6 +24,7 @@ const SignUp = () => {
     setConfirmPassword("");
     setMessage("");
   };
+
   const handleNameChange = (event) => {
     const enteredName = event.target.value;
     setName(enteredName);
@@ -71,20 +73,34 @@ const SignUp = () => {
   const isNameValid = validateName(name);
   const isLastNameValid = validateName(lastName);
 
-  
+
   if (!isNameValid || !isLastNameValid) {
     return;
   }
 
   
-  createUserWithEmailAndPassword(database, userEmail, password)
+  createUserWithEmailAndPassword(auth, userEmail, password)
   .then((userCredential) => {
-    resetForm();
-    setMessage("Account successfully created.");
-    const errorMessageElement = document.getElementById("screated");
-    errorMessageElement.style.color = "green";
-    errorMessageElement.style.padding = "5px 40px";
-    history("/");
+    const user = userCredential.user;
+    updateProfile(user, {
+      displayName: name, 
+    })
+      .then(() => {
+        resetForm();
+        setMessage("Account successfully created.");
+        const errorMessageElement = document.getElementById("screated");
+        errorMessageElement.style.color = "green";
+        errorMessageElement.style.padding = "5px 40px";
+        console.log('name', name);
+        history("/");
+      })
+      .catch((updateProfileError) => {
+        console.error("Error updating profile:", updateProfileError);
+        setMessage("An error occurred. Please try again.");
+        const errorMessageElement = document.getElementById("screated");
+        errorMessageElement.style.color = "red";
+        errorMessageElement.style.padding = "5px 40px";
+      });
   })
   .catch((err) => {
     if (err.code === "auth/invalid-email") {
